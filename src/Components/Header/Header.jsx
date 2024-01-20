@@ -8,7 +8,7 @@ function Header() {
   });
   const navigate = useNavigate();
   const NavItems = [
-    { name: "Home", slug: "/", active: authStatus },
+    { name: "Home", slug: "/", active: true },
     { name: "Login", slug: "/login", active: !authStatus },
     { name: "SignUp", slug: "/signup", active: !authStatus },
     { name: "AllPosts", slug: "/all-posts", active: authStatus },

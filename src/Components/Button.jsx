@@ -11,12 +11,12 @@ const Button = ({
   ...props
 }) => {
   return (
-    <type
+    <Button
       className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className}`}
       {...props}
     >
       {children}
-    </type>
+    </Button>
   );
 };
 
