@@ -10,19 +10,36 @@ function AllPosts() {
       }
     });
   }, []);
-  return (
-    <div className="w-full py-8">
-      <Container>
-        <div className="flex flex-wrap">
-          {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
-              <PostCard post={post} />
+  if (posts.length !== 0) {
+    return (
+      <div className="w-full py-8">
+        <Container>
+          <div className="flex flex-wrap">
+            <div className="w-full flex flex-wrap items-center justify-center">
+              <h1 className="text-center font-serif text-2xl font-bold">
+                Posts
+              </h1>
             </div>
-          ))}
-        </div>
-      </Container>
-    </div>
-  );
+            {posts.map((post) => (
+              <div key={post.$id} className="p-2 w-1/4">
+                <PostCard post={post} />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
+    );
+  } else {
+    return (
+      <div className="w-full py-8">
+        <Container>
+          <div className="flex flex-wrap justify-center items-center text-3xl ">
+            No posts found. Please add the post from Add Post option.
+          </div>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default AllPosts;

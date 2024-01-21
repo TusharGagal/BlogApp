@@ -12,7 +12,7 @@ export default function Post() {
 
   const userData = useSelector((state) => state.auth.userData);
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const isAuthor = post && userData ? post.UserId === userData.$id : false;
 
   useEffect(() => {
     if (slug) {
@@ -26,19 +26,18 @@ export default function Post() {
   const deletePost = () => {
     service.deletePost(post.$id).then((status) => {
       if (status) {
-        service.deleteFile(post.featuredImage);
+        service.deleteFile(post.FeaturedImage);
         navigate("/");
       }
     });
   };
-
   return post ? (
     <div className="py-8">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
           <img
-            src={service.getFilePreview(post.featuredImage)}
-            alt={post.title}
+            src={service.getFilePreview(post.FeaturedImage)}
+            alt={post.Title}
             className="rounded-xl"
           />
 
@@ -56,9 +55,9 @@ export default function Post() {
           )}
         </div>
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-2xl font-bold">{post.Title}</h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="browser-css">{parse(String(post.Content))}</div>
       </Container>
     </div>
   ) : null;

@@ -3,7 +3,11 @@
 import React from "react";
 
 const Logo = ({ width = "100px" }) => {
-  return <div>Logo</div>;
+  return (
+    <div>
+      <img src="./logo.png" alt="Logo" width={width} />
+    </div>
+  );
 };
 
 export default Logo;

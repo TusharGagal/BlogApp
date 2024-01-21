@@ -12,9 +12,9 @@ function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
-        title: post?.title || "",
+        Title: post?.Title || "",
         slug: post?.slug || "",
-        content: post?.content || "",
+        Content: post?.Content || "",
         status: post?.status || "active",
       },
     });
@@ -25,11 +25,11 @@ function PostForm({ post }) {
     if (post) {
       const file = data.image[0] ? service.fileUpload(data.image[0]) : null;
       if (file) {
-        service.fileDelete(post.featuredImage);
+        service.fileDelete(post.FeaturedImage);
       }
       const dbPost = await service.updatePost(post.$id, {
         ...data,
-        featuredImage: file ? file.$id : undefined,
+        FeaturedImage: file ? file.$id : undefined,
       });
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
@@ -40,10 +40,10 @@ function PostForm({ post }) {
         : null;
       if (file) {
         const fileId = file.$id;
-        data.featuredImage = fileId;
+        data.FeaturedImage = fileId;
         const dbPost = await service.createPost({
           ...data,
-          userId: userData.$id,
+          UserId: userData.$id,
         });
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -57,14 +57,14 @@ function PostForm({ post }) {
       return value
         .trim()
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-")
+        .replace(/[^a-zA-Z\d\s]+/g, "-")
         .replace(/\s/g, "-");
     return "";
   }, []);
   useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if (name === "title") {
-        setValue("slug", slugTransform(value.title, { shouldValidate: true }));
+      if (name === "Title") {
+        setValue("slug", slugTransform(value.Title, { shouldValidate: true }));
       }
     });
   }, [watch, slugTransform, setValue]);
@@ -75,7 +75,7 @@ function PostForm({ post }) {
           label="Title :"
           placeholder="Title"
           className="mb-4"
-          {...register("title", { required: true })}
+          {...register("Title", { required: true })}
         />
         <Input
           label="Slug :"
@@ -90,9 +90,9 @@ function PostForm({ post }) {
         />
         <RTE
           label="Content :"
-          name="content"
+          name="Content"
           control={control}
-          defaultValue={getValues("content")}
+          defaultValue={getValues("Content")}
         />
       </div>
       <div className="w-1/3 px-2">
@@ -106,21 +106,21 @@ function PostForm({ post }) {
         {post && (
           <div className="w-full mb-4">
             <img
-              src={service.getFilePreview(post.featuredImage)}
-              alt={post.title}
+              src={service.getFilePreview(post.FeaturedImage)}
+              alt={post.Title}
               className="rounded-lg"
             />
           </div>
         )}
         <Select
-          options={["active", "inactive"]}
+          options={["active", "inActive"]}
           label="Status"
           className="mb-4"
           {...register("status", { required: true })}
         />
         <Button
           type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
+          bgColor={post ? "bg-green-500" : "bg-blue-500"}
           className="w-full"
         >
           {post ? "Update" : "Submit"}
