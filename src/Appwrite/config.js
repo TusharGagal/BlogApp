@@ -59,12 +59,11 @@ export class Service {
   }
   async getPost(slug) {
     try {
-      await this.databases.getDocument(
+      return await this.databases.getDocument(
         conf.appwriteDatabaseID,
         conf.appwriteCollectionID,
         slug
       );
-      return true;
     } catch (error) {
       console.log("appwrite database get post error: " + error);
       return false;
