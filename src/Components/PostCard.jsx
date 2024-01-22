@@ -2,13 +2,13 @@
 /* eslint-disable no-unused-vars */
 import service from "../Appwrite/config";
 import { Link } from "react-router-dom";
-const PostCard = ({ $id, Title, featuredImage }) => {
+const PostCard = ({ $id, Title, FeaturedImage }) => {
   return (
     <Link to={`/post/${$id}`}>
       <div className="w-full bg-gray-100 rounded-xl p-4">
         <div className="w-full justify-center mb-4">
           <img
-            src={service.getFilePreview(featuredImage)}
+            src={service.getFilePreview(FeaturedImage)}
             alt={Title}
             className="rounded-xl"
           />

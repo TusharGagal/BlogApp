@@ -6,13 +6,16 @@ function Home() {
   const [posts, setPosts] = useState([]);
   const authStatus = useSelector((state) => state.auth.status);
   useEffect(() => {
-    service.getPosts().then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
-      }
-    });
-  }, []);
-  if (posts.length === 0) {
+    if (authStatus) {
+      service.getPosts().then((posts) => {
+        if (posts) {
+          setPosts(posts.documents);
+        }
+      });
+    }
+    setPosts([]);
+  }, [authStatus]);
+  if (posts.length === 0 || authStatus === false) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
@@ -26,21 +29,24 @@ function Home() {
         </Container>
       </div>
     );
-  }
-  return (
-    <div className="w-full py-8">
-      <Container>
-        <div className="flex flex-wrap">
-          <h1 className="text-center font-serif text-2xl font-bold">Posts</h1>
-          {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
-              <PostCard {...post} />
+  } else {
+    return (
+      <div className="w-full py-8">
+        <Container>
+          <div className="flex flex-wrap flex-col">
+            <h1 className="text-center font-serif text-2xl font-bold">Posts</h1>
+            <div className="flex flex-wrap gap-3">
+              {posts.map((post) => (
+                <div key={post.$id} className="p-2 w-1/4">
+                  <PostCard {...post} />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </Container>
-    </div>
-  );
+          </div>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default Home;

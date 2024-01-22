@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
-
-const Logo = ({ width = "100px" }) => {
+import logo from "../assets/logo.png";
+const Logo = ({ width = " 100px" }) => {
   return (
     <div>
-      <img src="./logo.png" alt="Logo" width={width} />
+      <img src={logo} alt="Logo" width={width} />
     </div>
   );
 };

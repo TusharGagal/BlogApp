@@ -31,6 +31,7 @@ export default function Post() {
       }
     });
   };
+  console.log(post);
   return post ? (
     <div className="py-8">
       <Container>
@@ -57,7 +58,7 @@ export default function Post() {
         <div className="w-full mb-6">
           <h1 className="text-2xl font-bold">{post.Title}</h1>
         </div>
-        <div className="browser-css">{parse(String(post.Content))}</div>
+        <div className="browser-css">{parse(post.Content)}</div>
       </Container>
     </div>
   ) : null;

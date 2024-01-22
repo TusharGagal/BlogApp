@@ -13,7 +13,7 @@ function PostForm({ post }) {
     useForm({
       defaultValues: {
         Title: post?.Title || "",
-        slug: post?.slug || "",
+        slug: post?.$id || "",
         Content: post?.Content || "",
         status: post?.status || "active",
       },
@@ -23,11 +23,12 @@ function PostForm({ post }) {
 
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0] ? service.fileUpload(data.image[0]) : null;
+      const file =
+        data.image && data.image[0] ? service.fileUpload(data.image[0]) : null;
       if (file) {
-        service.fileDelete(post.FeaturedImage);
+        service.fileDelete(post?.FeaturedImage);
       }
-      const dbPost = await service.updatePost(post.$id, {
+      const dbPost = await service.updatePost(post?.$id, {
         ...data,
         FeaturedImage: file ? file.$id : undefined,
       });
@@ -35,9 +36,10 @@ function PostForm({ post }) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
-      const file = data.image[0]
-        ? await service.fileUpload(data.image[0])
-        : null;
+      const file =
+        data.image && data.image[0]
+          ? await service.fileUpload(data.image[0])
+          : null;
       if (file) {
         const fileId = file.$id;
         data.FeaturedImage = fileId;
