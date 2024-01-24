@@ -103,7 +103,6 @@ function PostForm({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          required
           {...register("image", { required: !post })}
         />
         {post && (

@@ -26,7 +26,7 @@ function App() {
     <div className="min-h-screen flex flex-wrap content-between bg-skin-body">
       <div className="w-full block">
         <Header />
-        <main className="min-h-96">
+        <main className="min-h-96 overflow-hidden">
           <Outlet />
         </main>
         <Footer />
