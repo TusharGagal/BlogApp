@@ -72,7 +72,7 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+      <div className="postform w-2/3 px-2">
         <Input
           label="Title :"
           placeholder="Title"
@@ -97,7 +97,7 @@ function PostForm({ post }) {
           defaultValue={getValues("Content")}
         />
       </div>
-      <div className="w-1/3 px-2">
+      <div className="postform w-1/3 px-2">
         <Input
           label="Featured Image :"
           type="file"
