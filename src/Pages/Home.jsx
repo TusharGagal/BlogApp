@@ -33,7 +33,7 @@ function Home() {
     return (
       <div className="w-full py-8">
         <Container>
-          <div className="flex flex-wrap flex-col gap-3">
+          <div className="flex flex-wrap flex-col gap-5">
             <h1 className="text-center font-serif text-2xl font-bold">Posts</h1>
             <div className="posts flex flex-wrap items-center">
               {posts.map((post) => (

@@ -12,7 +12,7 @@ const PostCard = ({ $id, Title, FeaturedImage }) => {
             alt={Title}
             className="rounded-xl"
           />
-          <h2 className="text-xl text-center font-serif font-bold py-1">
+          <h2 className="text-xl text-center font-serif font-bold pt-4">
             {Title}
           </h2>
         </div>

@@ -15,7 +15,7 @@ function AllPosts() {
       <div className="w-full py-8">
         <Container>
           <div className="flex flex-wrap">
-            <div className="w-full flex flex-wrap flex-col items-center justify-center">
+            <div className="w-full flex flex-wrap flex-col items-center justify-center gap-5">
               <h1 className="text-center font-serif text-2xl font-bold">
                 Posts
               </h1>
