@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import logo from "../assets/logo.png";
-const Logo = ({ width = " 100px" }) => {
+const Logo = ({ width = " 100%" }) => {
   return (
     <div>
       <img src={logo} alt="Logo" width={width} />

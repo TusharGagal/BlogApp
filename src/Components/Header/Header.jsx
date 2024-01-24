@@ -41,7 +41,7 @@ function Header() {
         <nav className="flex justify-center items-center">
           <div className="mr-4">
             <Link to="/">
-              <Logo width="20%" />
+              <Logo width="30%" />
             </Link>
           </div>
           <ul className="flex ml-auto">
