@@ -1,21 +1,19 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-
 import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
 
 export default function RTE({ name, control, label, defaultValue = "" }) {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {label && <label className="inline-block mb-1 pl-1">{label}</label>}
       <Controller
         name={name || "Content"}
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
-            intitalValue={defaultValue}
+            initialValue={defaultValue}
             apiKey="xygqdztyzdqxu7dyo5le0361m3gv1y9eszck8uwy79rkmho2"
             init={{
+              initialValue: defaultValue,
               height: 500,
               menubar: true,
               plugins: [
@@ -43,7 +41,7 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
               toolbar:
                 "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px ;background-color:#f4f1de;",
             }}
             onEditorChange={onChange}
           />

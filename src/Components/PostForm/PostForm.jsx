@@ -20,8 +20,6 @@ function PostForm({ post }) {
     });
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
-
-  console.log(post.Content);
   const submit = async (data) => {
     if (post) {
       const file =
@@ -70,6 +68,7 @@ function PostForm({ post }) {
         setValue("slug", slugTransform(value.Title, { shouldValidate: true }));
       }
     });
+    return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
@@ -104,6 +103,7 @@ function PostForm({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
+          required
           {...register("image", { required: !post })}
         />
         {post && (
@@ -123,7 +123,7 @@ function PostForm({ post }) {
         />
         <Button
           type="submit"
-          bgColor={post ? "bg-green-500" : "bg-blue-500"}
+          bgColor={post ? "bg-pastel-gray" : "bg-button-color"}
           className="w-full"
         >
           {post ? "Update" : "Submit"}

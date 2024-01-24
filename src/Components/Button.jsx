@@ -5,7 +5,7 @@ import React from "react";
 const Button = ({
   children,
   type = "button",
-  bgColor = "bg-blue-600",
+  bgColor = "bg-button-color",
   textColor = "text-white",
   className = "",
   ...props

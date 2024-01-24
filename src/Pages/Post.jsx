@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import service from "../Appwrite/config";
+import service from "../Appwrite/config.js";
 import { Button, Container } from "../Components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
@@ -9,7 +9,6 @@ export default function Post() {
   const [post, setPost] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
-
   const userData = useSelector((state) => state.auth.userData);
 
   const isAuthor = post && userData ? post.UserId === userData.$id : false;
@@ -17,8 +16,10 @@ export default function Post() {
   useEffect(() => {
     if (slug) {
       service.getPost(slug).then((post) => {
-        if (post) setPost(post);
-        else navigate("/");
+        if (post) {
+          setPost(post);
+          console.log(parse(post.Content));
+        } else navigate("/");
       });
     } else navigate("/");
   }, [slug, navigate]);
@@ -27,14 +28,15 @@ export default function Post() {
     service.deletePost(post.$id).then((status) => {
       if (status) {
         service.deleteFile(post.FeaturedImage);
-        navigate("/");
       }
     });
+    navigate("/");
   };
+
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-1">
           <img
             src={service.getFilePreview(post.FeaturedImage)}
             alt={post.Title}
@@ -44,11 +46,11 @@ export default function Post() {
           {isAuthor && (
             <div className="absolute right-6 top-6">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
+                <Button bgColor="bg-emerald-green" className="mr-3">
                   Edit
                 </Button>
               </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
+              <Button bgColor="bg-red" onClick={deletePost}>
                 Delete
               </Button>
             </div>
